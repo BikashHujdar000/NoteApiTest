@@ -1,0 +1,39 @@
+ recyclerView= findViewById(R.id.recyclerView);
+
+        apiInterface= RetrofitInstance.getRetrofit().create(ApiInterface.class);
+
+        apiInterface.getPosts().enqueue(new Callback<List<PojoPosts>>() {
+            @Override
+            public void onResponse(Call<List<PojoPosts>> call, Response<List<PojoPosts>> response) {
+
+                if (response.body().size()>0)
+                {
+
+
+                    Toast.makeText(MainActivity.this, "List is not empty", Toast.LENGTH_SHORT).show();
+
+
+                     ArrayList<PojoPosts>lists= (ArrayList<PojoPosts>) response.body();
+                     
+
+                  //  List<PojoPosts>lists = response.body();
+                    postAdapter adapter = new postAdapter( lists ,MainActivity.this);
+
+                    LinearLayoutManager linearLayoutManager= new LinearLayoutManager(MainActivity.this);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                    recyclerView.setAdapter(adapter);
+
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "List is  empty", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<PojoPosts>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "" + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
