@@ -25,7 +25,7 @@ app.get ("/",(req,res)=>
 })
 
 
-const mongoUrl="mongodb+srv://admin:admin@cluster0.gerptzr.mongodb.net/notes_db?retryWrites=true&w=majority"
+const mongoUrl="mongodb+srv://admin:admin@notes.ztc2pwu.mongodb.net/notes_db?retryWrites=true&w=majority"
 const PORT = process.env.PORT || 4500;
 
 mongoose.connect(mongoUrl)
@@ -37,3 +37,4 @@ mongoose.connect(mongoUrl)
 .catch((error)=>{
     console.log(error);
 })
+//mongodb+srv://admin:admin@cluster0.gerptzr.mongodb.net/notes_db?retryWrites=true&w=majority
